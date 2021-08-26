@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package yebooks.api;
+
+message Yebook {
+  int32 id = 1;
+
+  int32 yebook_type_id = 3;
+
+  int32 version = 5;
+
+  google.protobuf.Timestamp prepayed = 7;
+
+  google.protobuf.Timestamp payed = 10;
+
+  google.protobuf.Timestamp next_meeting = 14;
+
+  google.protobuf.Timestamp deadline = 18;
+
+  google.protobuf.Timestamp created = 31;
+
+  google.protobuf.Timestamp updated = 32;
+
+  google.protobuf.Timestamp deleted = 33;
+}
