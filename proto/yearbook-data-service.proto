@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package yebooks.api;
+package yearbooks_production.api;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
@@ -10,7 +10,7 @@ import "google/protobuf/timestamp.proto";
 import "yebooks/api/yearbook.proto";
 import "yebooks/api/class.proto";
 
-service YebookDataService {
+service YearbookDataService {
   rpc CreateYebookAndClass (CreateYebookAndClassRequest) returns (CreateYebookAndClassResponse) {
     option (google.api.http) = { get: "/v1/yebook-data/get/{id}" };
   }
