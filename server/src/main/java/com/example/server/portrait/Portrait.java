@@ -12,7 +12,7 @@ public class Portrait {
     private Long studentId;//TODO fk
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Long getId() {
         return id;

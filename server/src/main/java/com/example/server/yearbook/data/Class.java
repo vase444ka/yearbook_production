@@ -26,7 +26,7 @@ public class Class {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public Long getId() {
         return id;
@@ -36,7 +36,8 @@ public class Class {
         this.id = id;
     }
 
-    @OneToOne(mappedBy = "aClass", cascade = CascadeType.ALL)
+    //@OneToOne(mappedBy = "aClass", cascade = CascadeType.ALL)
+    //@PrimaryKeyJoinColumn
     public Yearbook getYearbook() {
         return yearbook;
     }

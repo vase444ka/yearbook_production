@@ -3,6 +3,8 @@ package com.example.server.account;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 @Entity
 @Table(name = "account")
 public class Account {
@@ -14,7 +16,7 @@ public class Account {
     private Timestamp deleted;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Long getId() {
         return id;

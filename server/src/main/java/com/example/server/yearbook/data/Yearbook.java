@@ -78,8 +78,9 @@ public class Yearbook {
         this.id = id;
     }
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @OneToOne(optional = false, cascade=CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "id")
     public Class getaClass() {
         return aClass;
     }
