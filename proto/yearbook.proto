@@ -1,29 +1,33 @@
 syntax = "proto3";
 
-package api;
+package yearbooks_production.api;
 
 option java_multiple_files = true;
 
 import "google/protobuf/timestamp.proto";
 
+import "yearbooks_productoin/api/class.proto";
+
 message Yearbook {
   int64 id = 1;
 
-  int64 yearbook_type_id = 3;
-
   int32 version = 5;
 
-  google.protobuf.Timestamp prepayed = 7;
+  Class class = 9;
 
-  google.protobuf.Timestamp payed = 10;
+  int64 yearbook_type_id = 13;
 
-  google.protobuf.Timestamp next_meeting = 14;
+  google.protobuf.Timestamp prepayed = 17;
 
-  google.protobuf.Timestamp deadline = 18;
+  google.protobuf.Timestamp payed = 21;
 
-  google.protobuf.Timestamp created = 31;
+  google.protobuf.Timestamp next_meeting = 25;
 
-  google.protobuf.Timestamp updated = 32;
+  google.protobuf.Timestamp deadline = 29;
 
-  google.protobuf.Timestamp deleted = 33;
+  google.protobuf.Timestamp created = 41;
+
+  google.protobuf.Timestamp updated = 42;
+
+  google.protobuf.Timestamp deleted = 43;
 }

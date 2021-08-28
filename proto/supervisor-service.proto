@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package yearbooks_production.api;
+
+import "yearbooks_production/api/supervisor.proto";
+
+service SupervisorService {
+  rpc CreateSupervisor (Supervisor) returns (Supervisor) {
+    option (google.api.http).post = "/v1/supervisors";
+  }
+
+  rpc GetSupervisor (GetSupervisorRequest) returns (Supervisor) {
+    option (google.api.http).get = "/v1/supervisors/{id}";
+  }
+
+  rpc QuerySupervisors (QuerySupervisorsRequest) returns (QuerySupervisorsResponse) {
+    option (google.api.http).get = "/v1/supervisors/query";
+  }
+
+  rpc UpdateSupervisor (Supervisor) returns (Supervisor) {
+    option (google.api.http).put = "/v1/supervisors/{id}";
+  }
+
+  rpc DeleteSupervisor (DeleteSupervisorRequest) returns (Supervisor) {
+    option (google.api.http).delete = "/v1/supervisors/{id}";
+  }
+}
+
+message GetSupervisorRequest {
+  int64 id = 1;
+}
+
+message QuerySupervisorsRequest {
+  int64 yearbook_id = 1;
+}
+
+message QuerySupervisorsResponse {
+  repeated Supervisor supervisors = 1;
+}
+
+message DeleteSupervisorRequest {
+  int64 id = 1;
+
+  int32 version = 5;
+}

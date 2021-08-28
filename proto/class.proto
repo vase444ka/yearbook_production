@@ -3,7 +3,6 @@ syntax = "proto3";
 package group;
 
 option java_multiple_files = true;
-option java_package = "com.example.server.group";
 
 message Class {
   int64 id = 1;

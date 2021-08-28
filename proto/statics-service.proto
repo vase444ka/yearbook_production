@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package yearbooks_production.api;
+
+service StaticsService {
+  rpc UploadFile (UploadFileRequest) returns (UploadFileResponse) {
+    option (google.api.http).post = "/v1/statics/upload";
+  }
+}
+
+message MetaData {
+  string name = 1;
+  string type = 2;
+}
+
+message File {
+  bytes content = 1;
+}
+
+message UploadFileRequest {
+  oneof request {
+    MetaData metadata = 1;
+    File file = 2;
+  }
+}
+
+enum Status {
+  PENDING = 0;
+  IN_PROGRESS = 1;
+  SUCCESS = 2;
+  FAILED = 3;
+}
+
+message UploadFileResponse {
+  string name = 1;
+  Status status = 2;
+}
