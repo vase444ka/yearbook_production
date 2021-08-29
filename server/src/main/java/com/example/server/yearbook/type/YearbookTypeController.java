@@ -19,9 +19,8 @@ public class YearbookTypeController {
     }
 
     @PostMapping
-    public ResponseEntity<YearbookType> CreateYearbookType(@RequestBody YearbookType yearbookType){
-        Optional<YearbookType> created = yearbookTypeService.createYearbookType(yearbookType);
-        return created.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().body(null));
+    public YearbookType CreateYearbookType(@RequestBody YearbookType yearbookType){
+        return yearbookTypeService.createYearbookType(yearbookType);
     }
 
     @GetMapping(path="{yearbookTypeId}")

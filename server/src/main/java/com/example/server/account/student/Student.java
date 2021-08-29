@@ -14,9 +14,9 @@ public class Student {
     private String lastName;
     private String quote;
     private Boolean didChoosePortrait = Boolean.FALSE;
+    private Long classId;
 
     private Account account;
-    private Class aClass;
 
     @Id
     @Column(name = "id", nullable = false, unique = true, updatable = false)
@@ -75,26 +75,25 @@ public class Student {
         this.account = account;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional=false, cascade=CascadeType.MERGE)
-    @JoinColumn(name = "class_id")
-    public Class getaClass() {
-        return aClass;
+    @Column(name = "class_id", nullable = false)
+    public Long getClassId() {
+        return classId;
     }
 
-    public void setaClass(Class aClass) {
-        this.aClass = aClass;
+    public void setClassId(Long classId) {
+        this.classId = classId;
     }
 
     public Student(String firstName,
                    String lastName,
                    String quote,
                    Boolean chosePortrait,
-                   Class aClass) {
+                   Long classId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.quote = quote;
         this.didChoosePortrait = chosePortrait;
-        this.aClass = aClass;
+        this.classId = classId;
     }
 
     public Student(Long id,
@@ -102,13 +101,13 @@ public class Student {
                    String lastName,
                    String quote,
                    Boolean chosePortrait,
-                   Class aClass) {
+                   Long classId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.quote = quote;
         this.didChoosePortrait = chosePortrait;
-        this.aClass = aClass;
+        this.classId = classId;
     }
 
     public Student() {

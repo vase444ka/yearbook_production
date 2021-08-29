@@ -1,14 +1,73 @@
 ###
-PUT http://localhost:8080//v1/yearbook-types
+POST http://localhost:8080/v1/students/create-batch
+Content-Type: application/json
+
+[{
+  "firstName": "Dima",
+  "lastName": "S",
+  "classId": 5,
+
+  "account": {
+    "userName": "dima",
+    "passwordHash": "fake_password_hash"
+  }
+},
+  {
+    "firstName": "Kolya",
+    "lastName": "Kolyan",
+    "classId": 5,
+
+    "account": {
+      "userName": "kolya",
+      "passwordHash": "fake_password_hash"
+    }
+  },
+  {
+    "firstName": "Lyova",
+    "lastName": "P",
+    "classId": 5,
+
+    "account": {
+      "userName": "lyova",
+      "passwordHash": "fake_password_hash"
+    }
+  }
+]
+
+###
+
+GET http://localhost:8080/v1/students/16
+
+###
+GET http://localhost:8080/v1/students/20
+
+###
+GET http://localhost:8080/v1/students/1
+
+###
+GET http://localhost:8080/v1/students/query?class_id=10
+
+###
+POST http://localhost:8080/v1/students
 Content-Type: application/json
 
 {
-  "id": 1,
-  "name": "mega",
-  "portraitMeetingsCount": 2,
-  "groupMeetingsCount": 2,
-  "price": 950,
-  "photographerId": 6
+  "firstName": "Andrii",
+  "lastName": "Pavlenko",
+  "classId": 8,
+  "account": {
+    "userName": "andrii",
+    "passwordHash": "fake_password_hash"
+  }
 }
 
 ###
+POST http://localhost:8080/v1/students/create-batch
+Content-Type: application/json
+
+{"msg":"sam ty yebook"}
+
+
+
+
+

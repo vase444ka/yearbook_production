@@ -1,7 +1,9 @@
 package com.example.server.account;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -98,6 +100,8 @@ public class Account {
     }
 
     public Account() {
+        this.created = Timestamp.valueOf(LocalDateTime.now());
+        this.updated = Timestamp.valueOf(LocalDateTime.now());
     }
 
     @Override

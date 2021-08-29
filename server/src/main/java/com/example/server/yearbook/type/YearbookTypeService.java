@@ -21,9 +21,13 @@ public class YearbookTypeService {
         this.photographerRepository = photographerRepository;
     }
 
-    Optional<YearbookType> createYearbookType(YearbookType yearbookType){
-        return photographerRepository.existsById(yearbookType.getPhotographerId()) ?
-                Optional.of(yearbookTypeRepository.save(yearbookType)) : Optional.empty();
+    YearbookType createYearbookType(YearbookType yearbookType){
+        if (!photographerRepository.existsById(yearbookType.getPhotographerId())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+        else {
+            return yearbookTypeRepository.save(yearbookType);
+        }
     }
 
     public YearbookType getYearbookType(Long id){
@@ -42,14 +46,11 @@ public class YearbookTypeService {
     }
 
     public YearbookType UpdateYearbookType(YearbookType yearbookType){
-        System.out.println(yearbookType);
         if (!yearbookTypeRepository.existsById(yearbookType.getId()) ||
             !photographerRepository.existsById(yearbookType.getPhotographerId())){
-            System.out.println("pizda");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         else {
-            System.out.println(yearbookType);
             return yearbookTypeRepository.save(yearbookType);
         }
     }
