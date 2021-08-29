@@ -9,17 +9,21 @@ public class Class {
     private Integer grade;
     private String name;
     private String school;
-    private Integer version;
+    private Integer version;//TODO proper annotation
 
-    private Yearbook yearbook;
+    public Class(Integer grade, String name, String school, Integer version) {
+        this.grade = grade;
+        this.name = name;
+        this.school = school;
+        this.version = version;
+    }
 
-    public Class(Long id, Integer grade, String name, String school, Integer version, Yearbook yearbook) {
+    public Class(Long id, Integer grade, String name, String school, Integer version) {
         this.id = id;
         this.grade = grade;
         this.name = name;
         this.school = school;
         this.version = version;
-        this.yearbook = yearbook;
     }
 
     public Class() {
@@ -34,16 +38,6 @@ public class Class {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    //@OneToOne(mappedBy = "aClass", cascade = CascadeType.ALL)
-    //@PrimaryKeyJoinColumn
-    public Yearbook getYearbook() {
-        return yearbook;
-    }
-
-    public void setYearbook(Yearbook yearbook) {
-        this.yearbook = yearbook;
     }
 
     @Column(name = "grade", nullable = false)
@@ -80,5 +74,16 @@ public class Class {
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    @Override
+    public String toString() {
+        return "Class{" +
+                "id=" + id +
+                ", grade=" + grade +
+                ", name='" + name + '\'' +
+                ", school='" + school + '\'' +
+                ", version=" + version +
+                '}';
     }
 }

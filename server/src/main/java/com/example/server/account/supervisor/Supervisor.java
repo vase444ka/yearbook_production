@@ -1,30 +1,33 @@
 package com.example.server.account.supervisor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.example.server.account.Account;
+import com.example.server.yearbook.data.Yearbook;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "supervisor")
 public class Supervisor {
-    private Long id;//TODO weird fk
+    private Long id;
     private String name;
     private String contact;
-    private Boolean isViber;
-    private Boolean isTelegram;
-    private Long yearbookId;//TODO fk
+    private Boolean isViber = Boolean.FALSE;
+    private Boolean isTelegram = Boolean.FALSE;
+
+    private Yearbook yearbook;
+
+    private Account account;
 
     public Supervisor(String name,
                       String contact,
                       Boolean isViber,
                       Boolean isTelegram,
-                      Long yearbookId) {
+                      Yearbook yearbook) {
         this.name = name;
         this.contact = contact;
         this.isViber = isViber;
         this.isTelegram = isTelegram;
-        this.yearbookId = yearbookId;
+        this.yearbook = yearbook;
     }
 
     public Supervisor(Long id,
@@ -32,13 +35,13 @@ public class Supervisor {
                       String contact,
                       Boolean isViber,
                       Boolean isTelegram,
-                      Long yearbookId) {
+                      Yearbook yearbook) {
         this.id = id;
         this.name = name;
         this.contact = contact;
         this.isViber = isViber;
         this.isTelegram = isTelegram;
-        this.yearbookId = yearbookId;
+        this.yearbook = yearbook;
     }
 
     public Supervisor() {
@@ -90,12 +93,24 @@ public class Supervisor {
         isTelegram = telegram;
     }
 
-    @Column(name = "yearbook_id", nullable = false)
-    public Long getYearbookId() {
-        return yearbookId;
+    @ManyToOne(optional=false, cascade=CascadeType.ALL)
+    @JoinColumn(name = "yearbook_id")
+    public Yearbook getYearbook() {
+        return yearbook;
     }
 
-    public void setYearbookId(Long yearbookId) {
-        this.yearbookId = yearbookId;
+    public void setYearbook(Yearbook yearbook) {
+        this.yearbook = yearbook;
+    }
+
+    @OneToOne(optional = false, cascade=CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "id")
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

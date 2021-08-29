@@ -1,6 +1,8 @@
 package com.example.server.yearbook.type;
 
 
+import com.example.server.account.photographer.Photographer;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,28 +12,34 @@ public class YearbookType {
     private String name;
     private Integer portraitMeetingsCount;
     private Integer groupMeetingsCount;
-    private Long photographerId;//TODO fk
+    private Integer price;
+
+    private Long photographerId;
 
     public YearbookType(Long id,
                         String name,
                         Integer portraitMeetingsCount,
                         Integer groupMeetingsCount,
-                        Long photographerId) {
+                        Long photographerId,
+                        Integer price) {
         this.id = id;
         this.name = name;
         this.portraitMeetingsCount = portraitMeetingsCount;
         this.groupMeetingsCount = groupMeetingsCount;
         this.photographerId = photographerId;
+        this.price = price;
     }
 
     public YearbookType(String name,
                         Integer portraitMeetingsCount,
                         Integer groupMeetingsCount,
-                        Long photographerId) {
+                        Long photographerId,
+                        Integer price) {
         this.name = name;
         this.portraitMeetingsCount = portraitMeetingsCount;
         this.groupMeetingsCount = groupMeetingsCount;
         this.photographerId = photographerId;
+        this.price = price;
     }
 
     public YearbookType() {
@@ -46,6 +54,15 @@ public class YearbookType {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Column(name = "photographer_id", nullable = false)
+    public Long getPhotographerId() {
+        return photographerId;
+    }
+
+    public void setPhotographerId(Long photographerId) {
+        this.photographerId = photographerId;
     }
 
     @Column(name = "name", nullable = false)
@@ -75,12 +92,24 @@ public class YearbookType {
         this.groupMeetingsCount = groupMeetingsCount;
     }
 
-    @Column(name = "photographer_id", nullable = false)
-    public Long getPhotographerId() {
-        return photographerId;
+    @Column(name = "price", nullable = false)
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setPhotographerId(Long photographerId) {
-        this.photographerId = photographerId;
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "YearbookType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", portraitMeetingsCount=" + portraitMeetingsCount +
+                ", groupMeetingsCount=" + groupMeetingsCount +
+                ", price=" + price +
+                ", photographer=" + photographerId +
+                '}';
     }
 }

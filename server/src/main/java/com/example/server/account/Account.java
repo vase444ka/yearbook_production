@@ -99,4 +99,16 @@ public class Account {
 
     public Account() {
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", deleted=" + deleted +
+                '}';
+    }
 }

@@ -1,5 +1,8 @@
 package com.example.server.portrait;
 
+import com.example.server.account.student.Student;
+import com.example.server.yearbook.data.Yearbook;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,8 +11,10 @@ public class Portrait {
     private Long id;
     private String url;
     private String fileName;
-    private Long yearbookId;//TODO fk
-    private Long studentId;//TODO fk
+
+    private Yearbook yearbook;
+
+    private Student student;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,44 +45,46 @@ public class Portrait {
         this.fileName = fileName;
     }
 
-    @Column(name = "yearbook_id", nullable = false)
-    public Long getYearbookId() {
-        return yearbookId;
+    @ManyToOne(optional=false, cascade=CascadeType.MERGE)
+    @JoinColumn(name = "yearbook_id")
+    public Yearbook getYearbook() {
+        return yearbook;
     }
 
-    public void setYearbookId(Long yearbookId) {
-        this.yearbookId = yearbookId;
+    public void setYearbook(Yearbook yearbook) {
+        this.yearbook = yearbook;
     }
 
-    @Column(name = "student_id")
-    public Long getStudentId() {
-        return studentId;
+    @ManyToOne(cascade=CascadeType.MERGE)
+    @JoinColumn(name = "student_id")
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Portrait(String url,
                     String file_name,
-                    Long yearbookId,
-                    Long studentId) {
+                    Yearbook yearbook,
+                    Student student) {
         this.url = url;
         this.fileName = file_name;
-        this.yearbookId = yearbookId;
-        this.studentId = studentId;
+        this.yearbook = yearbook;
+        this.student = student;
     }
 
     public Portrait(Long id,
                     String url,
                     String file_name,
-                    Long yearbookId,
-                    Long studentId) {
+                    Yearbook yearbook,
+                    Student student) {
         this.id = id;
         this.url = url;
         this.fileName = file_name;
-        this.yearbookId = yearbookId;
-        this.studentId = studentId;
+        this.yearbook = yearbook;
+        this.student = student;
     }
 
     public Portrait() {

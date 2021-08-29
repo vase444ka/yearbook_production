@@ -1,20 +1,22 @@
 package com.example.server.account.student;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.example.server.account.Account;
+import com.example.server.yearbook.data.Class;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "student")
 public class Student {
-    private Long id;//TODO weird fk
+    private Long id;//FIXME maybe it needs to be bidirectional
     private String firstName;
     private String lastName;
     private String quote;
-    private Boolean didChoosePortrait;
-    private Long classId;
+    private Boolean didChoosePortrait = Boolean.FALSE;
+
+    private Account account;
+    private Class aClass;
 
     @Id
     @Column(name = "id", nullable = false, unique = true, updatable = false)
@@ -62,25 +64,37 @@ public class Student {
         this.didChoosePortrait = chosePortrait;
     }
 
-    @Column(name = "class_id", nullable = false)
-    public Long getClassId() {
-        return classId;
+    @OneToOne(optional = false, cascade=CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "id")
+    public Account getAccount() {
+        return account;
     }
 
-    public void setClassId(Long classId) {
-        this.classId = classId;
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER, optional=false, cascade=CascadeType.MERGE)
+    @JoinColumn(name = "class_id")
+    public Class getaClass() {
+        return aClass;
+    }
+
+    public void setaClass(Class aClass) {
+        this.aClass = aClass;
     }
 
     public Student(String firstName,
                    String lastName,
                    String quote,
                    Boolean chosePortrait,
-                   Long classId) {
+                   Class aClass) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.quote = quote;
         this.didChoosePortrait = chosePortrait;
-        this.classId = classId;
+        this.aClass = aClass;
     }
 
     public Student(Long id,
@@ -88,13 +102,13 @@ public class Student {
                    String lastName,
                    String quote,
                    Boolean chosePortrait,
-                   Long classId) {
+                   Class aClass) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.quote = quote;
         this.didChoosePortrait = chosePortrait;
-        this.classId = classId;
+        this.aClass = aClass;
     }
 
     public Student() {

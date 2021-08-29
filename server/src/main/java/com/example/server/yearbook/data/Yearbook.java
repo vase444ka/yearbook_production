@@ -1,5 +1,7 @@
 package com.example.server.yearbook.data;
 
+import com.example.server.yearbook.type.YearbookType;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -7,10 +9,9 @@ import java.sql.Timestamp;
 @Table(name = "yearbook")
 public class Yearbook {
 
-    private Long id;//TODO figure one to one out
-    private Long  yearbookTypeId;//TODO fk
-    private Integer version;
-    private Timestamp prepayed;//TODO data type
+    private Long id;
+    private Integer version;//TODO proper annotation
+    private Timestamp prepayed;
     private Timestamp payed;
     private Timestamp nextMeeting;
     private Timestamp deadline;
@@ -20,10 +21,12 @@ public class Yearbook {
 
     private Class aClass;
 
+    private YearbookType yearbookType;
+
     public Yearbook() {
     }
 
-    public Yearbook(Long yearbookTypeId,
+    public Yearbook(YearbookType yearbookType,
                     Integer version,
                     Timestamp prepayed,
                     Timestamp payed,
@@ -33,7 +36,7 @@ public class Yearbook {
                     Timestamp updated,
                     Timestamp deleted,
                     Class aClass) {
-        this.yearbookTypeId = yearbookTypeId;
+        this.yearbookType = yearbookType;
         this.version = version;
         this.prepayed = prepayed;
         this.payed = payed;
@@ -46,7 +49,7 @@ public class Yearbook {
     }
 
     public Yearbook(Long id,
-                    Long yearbookTypeId,
+                    YearbookType yearbookType,
                     Integer version,
                     Timestamp prepayed,
                     Timestamp payed,
@@ -56,7 +59,7 @@ public class Yearbook {
                     Timestamp updated,
                     Timestamp deleted, Class aClass) {
         this.id = id;
-        this.yearbookTypeId = yearbookTypeId;
+        this.yearbookType = yearbookType;
         this.version = version;
         this.prepayed = prepayed;
         this.payed = payed;
@@ -85,25 +88,18 @@ public class Yearbook {
         return aClass;
     }
 
-    /**
-     * Bidirectional setter
-     * @param aClass
-     **/
     public void setaClass(Class aClass) {
         this.aClass = aClass;
-        if(aClass!=null) {
-            aClass.setYearbook(this);
-        }
     }
 
-    //TODO foreign key
-    @Column(name = "yearbook_type_id", nullable = false)
-    public Long getYearbookTypeId() {
-        return yearbookTypeId;
+    @ManyToOne(fetch = FetchType.EAGER, optional=false, cascade=CascadeType.MERGE)
+    @JoinColumn(name = "yearbook_type_id")
+    public YearbookType getYearbookType() {
+        return yearbookType;
     }
 
-    public void setYearbookTypeId(Long yearbookTypeId) {
-        this.yearbookTypeId = yearbookTypeId;
+    public void setYearbookType(YearbookType yearbookType) {
+        this.yearbookType = yearbookType;
     }
 
     @Column(name = "version", nullable = false)
@@ -169,7 +165,7 @@ public class Yearbook {
         this.updated = updated;
     }
 
-    @Column(name = "deleted", nullable = false, updatable = false)
+    @Column(name = "deleted", updatable = false)
     public Timestamp getDeleted() {
         return deleted;
     }
@@ -182,7 +178,8 @@ public class Yearbook {
     public String toString() {
         return "Yearbook{" +
                 "id=" + id +
-                ", yearbookTypeId=" + yearbookTypeId +
+                ", yearbookType=" + getYearbookType().toString() +
+                ", class=" + getaClass().toString() +
                 ", version=" + version +
                 ", prepayed=" + prepayed +
                 ", payed=" + payed +
