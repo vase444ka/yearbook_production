@@ -1,0 +1,34 @@
+{
+  "name": "yearbook_production-api",
+  "version": "1.0.0",
+  "description": "API definitions for yearbook_production",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vase444ka/yearbook_production",
+    "directory": "api"
+  },
+  "author": {
+    "name": "Vasylyna Borysiuk",
+    "email": "vbanonime@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Andrew Pavlenko",
+      "email": "paavlenko.andrew@gmail.com"
+    }
+  ],
+  "files": [
+    "yearbook_production",
+    "dist",
+    "package.json"
+  ],
+  "scripts": {
+    "prebuild": "mkdir -p ./dist/proto-generated",
+    "build": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./dist/proto-generated yearbook_production/*.proto",
+    "test": "echo 'sam ty yebook' && exit 0"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "ts-proto": "^1.82.5"
+  }
+}

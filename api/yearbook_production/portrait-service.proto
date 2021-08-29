@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package yearbook_production;
+
+import "google/api/annotations.proto";
+
+import "yearbook_production/portrait.proto";
+
+service PortraitService {
+  rpc CreatePortrait (Portrait) returns (Portrait) {
+    option (google.api.http).post = "/v1/portraits";
+  }
+
+  rpc QueryPortraits (QueryPortraitsRequest) returns (QueryPortraitsResponse) {
+    option (google.api.http).post = "/v1/portraits";
+  }
+
+  rpc UpdatePortrait (Portrait) returns (Portrait) {
+    option (google.api.http).put = "/v1/portraits/{id}";
+  }
+
+  rpc DeletePortrait (DeletePortraitRequest) returns (Portrait) {
+    option (google.api.http).delete = "/v1/portraits/{id}";
+  }
+}
+
+message QueryPortraitsRequest {
+  int64 yearbook_id = 1;
+}
+
+message QueryPortraitsResponse {
+  repeated Portrait portraits = 1;
+}
+
+message DeletePortraitRequest {
+  int64 id = 1;
+
+  int32 version = 5;
+}

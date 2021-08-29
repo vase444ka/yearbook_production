@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package yearbook_production;
+
+import "yearbook_production/account.proto";
+
+option java_multiple_files = true;
+
+message Supervisor {
+  int64 id = 1;
+
+  string name = 5;
+
+  string contact = 9;
+
+  bool is_viber = 13;
+
+  bool is_telegram = 17;
+
+  int64 yearbook_id = 21;
+
+  Account account = 25;
+}

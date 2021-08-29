@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package yearbook_production;
+
+import "google/api/annotations.proto";
+
+import "yearbook_production/student.proto";
+
+service StudentService {
+  rpc CreateStudent (Student) returns (Student) {
+    option (google.api.http).post = "/v1/students";
+  }
+
+  rpc CreateStudentsBatch (CreateStudentsBatchRequest) returns (CreateStudentsBatchResponse) {
+    option (google.api.http).post = "/v1/students/create-batch";
+  }
+
+  rpc GetStudent (GetStudentRequest) returns (Student) {
+    option (google.api.http).get = "/v1/students/{id}";
+  }
+
+  rpc QueryStudents (QueryStudentsRequest) returns (QueryStudentsResponse) {
+    option (google.api.http).get = "/v1/students/query";
+  }
+
+  rpc UpdateStudent (Student) returns (Student) {
+    option (google.api.http).put = "/v1/students/{id}";
+  }
+
+  rpc DeleteStudent (DeleteStudentRequest) returns (Student) {
+    option (google.api.http).delete = "/v1/students/{id}";
+  }
+}
+
+message CreateStudentsBatchRequest {
+  repeated Student students = 1;
+}
+
+message CreateStudentsBatchResponse {
+  repeated Student students = 1;
+}
+
+message GetStudentRequest {
+  int64 id = 1;
+}
+
+message QueryStudentsRequest {
+  int64 yearbook_id = 1;
+}
+
+message QueryStudentsResponse {
+  repeated Student students = 1;
+}
+
+message DeleteStudentRequest {
+  int64 id = 1;
+
+  int32 version = 5;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package yearbook_production;
+
+option java_multiple_files = true;
+
+message Portrait {
+  int64 id = 1;
+
+  int64 student_id = 5;
+
+  int64 yearbook_id = 9;
+
+  string url = 13;
+
+  string file_name = 17;
+}

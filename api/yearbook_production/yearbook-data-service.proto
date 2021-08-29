@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package yearbook_production;
+
+import "google/api/annotations.proto";
+
+import "yearbook_production/yearbook.proto";
+import "yearbook_production/class.proto";
+
+option java_multiple_files = true;
+
+service YearbookDataService {
+  rpc CreateYearbookAndClass (CreateYearbookAndClassRequest) returns (CreateYearbookAndClassResponse) {
+    option (google.api.http).post = "/v1/yearbook-data";
+  }
+
+  rpc GetYearbookData (GetYearbookDataRequest) returns (GetYearbookDataResponse) {
+    option (google.api.http).get = "/v1/yearbook-data/{id}";
+  }
+
+  rpc UpdateYearbook (Yearbook) returns (YearbookData) {
+    option (google.api.http).put = "/v1/yearbook-data/update-yearbook/{id}";
+  }
+
+  rpc UpdateClass (Class) returns (Class) {
+    option (google.api.http).put = "/v1/yearbook-data/update-class/{id}";
+  }
+
+  rpc DeleteYearbookAndClass (DeleteYearbookAndClassRequest) returns (Yearbook) {
+    option (google.api.http).delete = "/v1/yearbook-data/{id}";
+  }
+}
+
+message CreateYearbookAndClassRequest {
+  Yearbook yearbook = 1;
+
+  Class class = 5;
+}
+
+message CreateYearbookAndClassResponse {
+  Yearbook yearbook = 1;
+}
+
+message GetYearbookDataRequest {
+  int32 id = 1;
+}
+
+message GetYearbookDataResponse {
+  Yearbook yearbook = 1;
+}
+
+message DeleteYearbookAndClassRequest {
+  int64 id = 1;
+
+  int32 version = 5;
+}

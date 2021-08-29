@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package yearbook_production;
+
+import "google/protobuf/timestamp.proto";
+
+message Account {
+  string username = 1;
+
+  string password = 5;
+
+  google.protobuf.Timestamp created = 21;
+
+  google.protobuf.Timestamp updated = 22;
+
+  google.protobuf.Timestamp deleted = 23;
+}
