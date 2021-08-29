@@ -13,7 +13,6 @@ public class YearbookType {
     private Integer portraitMeetingsCount;
     private Integer groupMeetingsCount;
     private Integer price;
-
     private Long photographerId;
 
     public YearbookType(Long id,
@@ -109,7 +108,7 @@ public class YearbookType {
                 ", portraitMeetingsCount=" + portraitMeetingsCount +
                 ", groupMeetingsCount=" + groupMeetingsCount +
                 ", price=" + price +
-                ", photographer=" + photographerId +
+                ", photographerId=" + photographerId +
                 '}';
     }
 }

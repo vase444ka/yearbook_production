@@ -1,3 +1,14 @@
-GET http://localhost:8080/api/class
+###
+PUT http://localhost:8080//v1/yearbook-types
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "mega",
+  "portraitMeetingsCount": 2,
+  "groupMeetingsCount": 2,
+  "price": 950,
+  "photographerId": 6
+}
 
 ###
