@@ -1,5 +1,6 @@
 package com.example.server.yearbook.data;
 
+import com.example.server.yearbook.data.aclass.Class;
 import com.example.server.yearbook.type.YearbookType;
 
 import javax.persistence.*;

@@ -13,8 +13,7 @@ public class Supervisor {
     private String contact;
     private Boolean isViber = Boolean.FALSE;
     private Boolean isTelegram = Boolean.FALSE;
-
-    private Yearbook yearbook;
+    private Long yearbookId;//TODO supervisor registration flow
 
     private Account account;
 
@@ -22,12 +21,12 @@ public class Supervisor {
                       String contact,
                       Boolean isViber,
                       Boolean isTelegram,
-                      Yearbook yearbook) {
+                      Long yearbookId) {
         this.name = name;
         this.contact = contact;
         this.isViber = isViber;
         this.isTelegram = isTelegram;
-        this.yearbook = yearbook;
+        this.yearbookId = yearbookId;
     }
 
     public Supervisor(Long id,
@@ -35,13 +34,13 @@ public class Supervisor {
                       String contact,
                       Boolean isViber,
                       Boolean isTelegram,
-                      Yearbook yearbook) {
+                      Long yearbookId) {
         this.id = id;
         this.name = name;
         this.contact = contact;
         this.isViber = isViber;
         this.isTelegram = isTelegram;
-        this.yearbook = yearbook;
+        this.yearbookId = yearbookId;
     }
 
     public Supervisor() {
@@ -93,14 +92,13 @@ public class Supervisor {
         isTelegram = telegram;
     }
 
-    @ManyToOne(optional=false, cascade=CascadeType.ALL)
-    @JoinColumn(name = "yearbook_id")
-    public Yearbook getYearbook() {
-        return yearbook;
+    @Column(name = "yearbook_id", nullable = false)
+    public Long getYearbookId() {
+        return yearbookId;
     }
 
-    public void setYearbook(Yearbook yearbook) {
-        this.yearbook = yearbook;
+    public void setYearbookId(Long yearbookId) {
+        this.yearbookId = yearbookId;
     }
 
     @OneToOne(optional = false, cascade=CascadeType.ALL)

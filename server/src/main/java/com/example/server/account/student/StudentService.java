@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import com.example.server.yearbook.data.ClassRepository;
+import com.example.server.yearbook.data.aclass.ClassRepository;
 
 
-import java.util.LinkedList;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +57,7 @@ public class StudentService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         else {
+            student.getAccount().setUpdated(Timestamp.valueOf(LocalDateTime.now()));
             return studentRepository.save(student);
         }
     }

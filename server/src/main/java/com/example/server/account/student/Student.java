@@ -2,7 +2,6 @@ package com.example.server.account.student;
 
 
 import com.example.server.account.Account;
-import com.example.server.yearbook.data.Class;
 
 import javax.persistence.*;
 

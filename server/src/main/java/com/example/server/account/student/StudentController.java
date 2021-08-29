@@ -39,12 +39,12 @@ public class StudentController {
     }
 
     @DeleteMapping(path="{studentId}")
-    public void DeleteYearbookType(@PathVariable("studentId") Long id){
+    public void DeleteStudent(@PathVariable("studentId") Long id){
         studentService.DeleteStudent(id);
     }
 
     @PutMapping
-    public Student UpdateYearbookType(@RequestBody Student student){//TODO partial updates
+    public Student UpdateStudent(@RequestBody Student student){//TODO partial updates
         return studentService.UpdateStudent(student);
     }
 }
