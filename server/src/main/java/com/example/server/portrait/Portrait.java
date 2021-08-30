@@ -1,7 +1,7 @@
 package com.example.server.portrait;
 
 import com.example.server.account.student.Student;
-import com.example.server.yearbook.data.Yearbook;
+import com.example.server.yearbook.Yearbook;
 
 import javax.persistence.*;
 

@@ -1,7 +1,6 @@
 package com.example.server.account.supervisor;
 
 import com.example.server.account.Account;
-import com.example.server.yearbook.data.Yearbook;
 
 import javax.persistence.*;
 

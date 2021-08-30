@@ -1,11 +1,9 @@
 package com.example.server.yearbook.type;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/yearbook-types")
@@ -20,12 +18,12 @@ public class YearbookTypeController {
 
     @PostMapping
     public YearbookType CreateYearbookType(@RequestBody YearbookType yearbookType){
-        return yearbookTypeService.createYearbookType(yearbookType);
+        return yearbookTypeService.CreateYearbookType(yearbookType);
     }
 
     @GetMapping(path="{yearbookTypeId}")
     public YearbookType GetYearbookType(@PathVariable("yearbookTypeId") Long id){
-        return yearbookTypeService.getYearbookType(id);
+        return yearbookTypeService.GetYearbookType(id);
     }
 
     @GetMapping(path = "/query")

@@ -1,4 +1,4 @@
-package com.example.server.yearbook.data.aclass;
+package com.example.server.yearbook;
 
 import javax.persistence.*;
 

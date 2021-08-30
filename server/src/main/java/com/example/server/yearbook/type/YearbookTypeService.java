@@ -21,7 +21,7 @@ public class YearbookTypeService {
         this.photographerRepository = photographerRepository;
     }
 
-    YearbookType createYearbookType(YearbookType yearbookType){
+    YearbookType CreateYearbookType(YearbookType yearbookType){
         if (!photographerRepository.existsById(yearbookType.getPhotographerId())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -30,7 +30,7 @@ public class YearbookTypeService {
         }
     }
 
-    public YearbookType getYearbookType(Long id){
+    public YearbookType GetYearbookType(Long id){
         Optional<YearbookType> result = yearbookTypeRepository.findById(id);
         if (result.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
