@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "student")
 public class Student {
-    private Long id;//FIXME maybe it needs to be bidirectional
+    private Long id;//TODO maybe it needs to be bidirectional
     private String firstName;
     private String lastName;
     private String quote;

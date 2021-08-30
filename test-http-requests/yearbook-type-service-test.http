@@ -2,21 +2,20 @@
 POST http://localhost:8080/v1/students/create-batch
 Content-Type: application/json
 
-[{
-  "firstName": "Dima",
-  "lastName": "S",
-  "classId": 5,
-
-  "account": {
-    "userName": "dima",
-    "passwordHash": "fake_password_hash"
-  }
-},
+[
+  {
+    "firstName": "Dima",
+    "lastName": "S",
+    "classId": 5,
+    "account": {
+      "userName": "dima",
+      "passwordHash": "fake_password_hash"
+    }
+  },
   {
     "firstName": "Kolya",
     "lastName": "Kolyan",
     "classId": 5,
-
     "account": {
       "userName": "kolya",
       "passwordHash": "fake_password_hash"
@@ -26,7 +25,6 @@ Content-Type: application/json
     "firstName": "Lyova",
     "lastName": "P",
     "classId": 5,
-
     "account": {
       "userName": "lyova",
       "passwordHash": "fake_password_hash"
@@ -65,7 +63,152 @@ Content-Type: application/json
 POST http://localhost:8080/v1/students/create-batch
 Content-Type: application/json
 
-{"msg":"sam ty yebook"}
+{
+  "msg": "sam ty yebook"
+}
+
+###
+POST http://localhost:8080/v1/yearbooks
+Content-Type: application/json
+
+{
+  "deadline": "2021-10-29T11:45:29.38",
+  "aClass": {
+    "grade": 11,
+    "name": "C",
+    "school": "KNSL 145"
+  },
+  "yearbookType": {
+    "id": 13
+  }
+}
+
+###
+GET http://localhost:8080/v1/yearbooks/12
+
+###
+
+GET http://localhost:8080/v1/yearbooks/query?photographer_id=6
+
+###
+PUT http://localhost:8080/v1/yearbooks
+Content-Type: application/json
+
+{
+  "id": 12,
+  "version": 1,
+  "prepayed": "2021-08-30T13:39:56.780+00:00",
+  "payed": null,
+  "nextMeeting": null,
+  "deadline": "2021-10-29T11:45:29.380+00:00",
+  "created": "2021-08-30T13:39:56.780+00:00",
+  "updated": "2021-08-30T13:39:56.780+00:00",
+  "deleted": null,
+  "aClass": {
+    "id": 12,
+    "grade": 11,
+    "name": "C",
+    "school": "KNSL 145",
+    "version": 1
+  },
+  "yearbookType": {
+    "id": 13,
+    "name": "exclusive",
+    "portraitMeetingsCount": 3,
+    "groupMeetingsCount": 2,
+    "price": 2000,
+    "photographerId": 6
+  }
+}
+
+###
+
+PUT http://localhost:8080/v1/yearbooks/12
+Content-Type: application/json
+
+{
+  "id": 12,
+  "version": 2,
+  "prepayed": "2021-08-30T13:39:56.780+00:00",
+  "payed": "2021-09-30T13:39:56.780+00:00",
+  "nextMeeting": "2021-09-05T13:39:56.780+00:00",
+  "deadline": "2021-10-29T11:45:29.380+00:00",
+  "created": "2021-08-30T13:39:56.780+00:00",
+  "updated": "2021-08-30T13:44:28.350+00:00",
+  "deleted": null,
+  "aClass": {
+    "id": 12,
+    "grade": 11,
+    "name": "C",
+    "school": "KNSL_145",
+    "version": 1
+  },
+  "yearbookType": {
+    "id": 13,
+    "name": "exclusive",
+    "portraitMeetingsCount": 3,
+    "groupMeetingsCount": 2,
+    "price": 2000,
+    "photographerId": 6
+  }
+}
+###
+PUT http://localhost:8080/v1/yearbooks/8/class
+Content-Type: application/json
+
+{
+  "grade": 11,
+  "name": "C",
+  "school": "117 Ukrainky",
+  "version": 4
+}
+
+###
+POST http://localhost:8080/v1/supervisors
+Content-Type: application/json
+
+{
+  "name": "Liuda D",
+  "contact": "122-12-12",
+  "yearbookId": 12,
+  "telegram": true,
+  "account": {
+    "userName": "rostyslav",
+    "passwordHash": "fake_password_hash"
+  }
+}
+
+###
+GET http://localhost:8080/v1/supervisors/27
+
+
+###
+GET http://localhost:8080/v1/supervisors/query?yearbook_id=12
+
+###
+PUT http://localhost:8080/v1/supervisors
+Content-Type: application/json
+
+
+{
+  "id": 28,
+  "name": "Rostyslav Tkach",
+  "contact": "555-35-35",
+  "yearbookId": 12,
+  "account": {
+    "id": 28,
+    "userName": "rostyslav",
+    "passwordHash": "fake_password_hash",
+    "created": "2021-08-30T14:10:44.340+00:00",
+    "updated": "2021-08-30T14:10:44.340+00:00",
+    "deleted": null
+  },
+  "viber": true,
+  "telegram": true
+}
+
+###
+DELETE http://localhost:8080/v1/supervisors/30
 
 
 

@@ -4,13 +4,14 @@ import com.example.server.yearbook.type.YearbookType;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "yearbook")
 public class Yearbook {
 
     private Long id;
-    private Integer version;//TODO proper annotation
+    private Integer version;
     private Timestamp prepayed;
     private Timestamp payed;
     private Timestamp nextMeeting;
@@ -24,6 +25,9 @@ public class Yearbook {
     private YearbookType yearbookType;
 
     public Yearbook() {
+        this.created = Timestamp.valueOf(LocalDateTime.now());
+        this.updated = Timestamp.valueOf(LocalDateTime.now());
+        this.version = 1;
     }
 
     public Yearbook(YearbookType yearbookType,
@@ -102,6 +106,7 @@ public class Yearbook {
         this.yearbookType = yearbookType;
     }
 
+    @Version
     @Column(name = "version", nullable = false)
     public Integer getVersion() {
         return version;

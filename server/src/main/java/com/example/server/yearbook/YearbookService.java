@@ -48,7 +48,7 @@ public class YearbookService {
     }
 
     public List<Yearbook> QueryYearbooks(Long id){
-        return yearbookRepository.findYearbooksByPhotographerId(id);
+        return yearbookRepository.FindAllWithDescriptionQuery(id);
     }
 
     public Yearbook UpdateYearbook(Yearbook yearbook){

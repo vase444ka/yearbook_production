@@ -9,6 +9,8 @@ message Account {
 
   string password = 5;
 
+  int64 id = 9;
+
   google.protobuf.Timestamp created = 21;
 
   google.protobuf.Timestamp updated = 22;

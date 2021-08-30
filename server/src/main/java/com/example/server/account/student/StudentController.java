@@ -44,7 +44,7 @@ public class StudentController {
     }
 
     @PutMapping
-    public Student UpdateStudent(@RequestBody Student student){//TODO partial updates
+    public Student UpdateStudent(@RequestBody Student student){
         return studentService.UpdateStudent(student);
     }
 }

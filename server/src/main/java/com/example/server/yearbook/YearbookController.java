@@ -31,9 +31,16 @@ public class YearbookController {
         return yearbookService.QueryYearbooks(id);
     }
 
-    @PutMapping
-    public Yearbook UpdateYearbook(@RequestBody Yearbook yearbook){
+    @PutMapping(path="/{id}")
+    public Yearbook UpdateYearbook(@RequestBody Yearbook yearbook, @PathVariable("id") Long id){
+        yearbook.setId(id);
         return yearbookService.UpdateYearbook(yearbook);
+    }
+
+    @PutMapping(path = "/{id}/class")
+    public Class UpdateClass(@RequestBody Class aClass, @PathVariable("id") Long id){
+        aClass.setId(id);
+        return yearbookService.UpdateClass(aClass);
     }
 
     @DeleteMapping(path="{yearbookId}")

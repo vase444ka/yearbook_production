@@ -1,11 +1,10 @@
 package com.example.server.account;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-
-import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Table(name = "account")
@@ -28,6 +27,7 @@ public class Account {
         this.id = id;
     }
 
+    @NaturalId
     @Column(name = "username", unique = true, nullable = false)
     public String getUserName() {
         return userName;

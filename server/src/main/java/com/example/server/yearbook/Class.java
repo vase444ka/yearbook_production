@@ -9,7 +9,7 @@ public class Class {
     private Integer grade;
     private String name;
     private String school;
-    private Integer version;//TODO proper annotation
+    private Integer version;
 
     public Class(Integer grade, String name, String school, Integer version) {
         this.grade = grade;
@@ -27,6 +27,7 @@ public class Class {
     }
 
     public Class() {
+        this.version = 1;
     }
 
     @Id
@@ -67,6 +68,7 @@ public class Class {
         this.school = school;
     }
 
+    @Version
     @Column(name = "version", nullable = false)
     public Integer getVersion() {
         return version;

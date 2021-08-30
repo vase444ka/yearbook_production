@@ -47,7 +47,7 @@ public class SupervisorService {
 
     public Supervisor UpdateSupervisor(Supervisor supervisor){
         if (!supervisorRepository.existsById(supervisor.getId()) ||
-                !supervisorRepository.existsById(supervisor.getYearbookId())){
+                !yearbookRepository.existsById(supervisor.getYearbookId())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         else {

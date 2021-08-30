@@ -8,9 +8,7 @@ import java.util.List;
 
 @Repository
 public interface YearbookRepository extends JpaRepository<Yearbook, Long> {
-    @Query(
-            value = "SELECT * FROM yearbook JOIN yearbook_type yt on yt.id = yearbook.yearbook_type_id" +
-                    " yt WHERE yt.photographer_id = ",
-            nativeQuery = true)
-    List<Yearbook> findYearbooksByPhotographerId();//TODO custom SQL
+
+    @Query("FROM Yearbook AS yb LEFT JOIN yb.yearbookType AS yt WHERE yt.photographerId = ?1")
+    public List<Yearbook> FindAllWithDescriptionQuery(Long id);
 }

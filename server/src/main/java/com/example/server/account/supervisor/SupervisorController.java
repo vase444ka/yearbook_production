@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/supervisors")
-public class SupervisorController {//TODO whole testing
+public class SupervisorController {
     private final SupervisorService supervisorService;
 
     public SupervisorController(SupervisorService supervisorService){
@@ -29,13 +29,13 @@ public class SupervisorController {//TODO whole testing
         return supervisorService.QuerySupervisors(id);
     }
 
-    @DeleteMapping(path="{supervisorId}")
+    @DeleteMapping(path="{supervisorId}")//TODO delete testing
     public void DeleteSupervisor(@PathVariable("supervisorId") Long id){
         supervisorService.DeleteSupervisor(id);
     }
 
     @PutMapping
-    public Supervisor UpdateSupervisor(@RequestBody Supervisor supervisor){//TODO partial updates
+    public Supervisor UpdateSupervisor(@RequestBody Supervisor supervisor){//TODO partial updates(merging new entity with existing)
         return supervisorService.UpdateSupervisor(supervisor);
     }
 
