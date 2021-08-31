@@ -40,6 +40,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .hasAnyAuthority("ROLE_PHOTOGRAPHER",
                         "ROLE_SUPERVISOR",
                         "ROLE_STUDENT");
+        http.authorizeRequests().antMatchers(POST, "/v1/students", "/v1/students/query")
+                .hasAnyAuthority("ROLE_PHOTOGRAPHER",
+                        "ROLE_SUPERVISOR");
+        http.authorizeRequests().antMatchers(PUT, "/v1/students")
+                .hasAnyAuthority("ROLE_SUPERVISOR",
+                        "ROLE_STUDENT");
+
 
 
     }

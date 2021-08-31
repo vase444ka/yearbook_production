@@ -47,14 +47,17 @@ GET http://localhost:8080/v1/students/1
 GET http://localhost:8080/v1/students/query?class_id=10
 
 ###
-POST http://localhost:8080/v1/students
+PUT http://localhost:8080/v1/students
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2Iiwicm9sZXMiOlsiUk9MRV9QSE9UT0dSQVBIRVIiXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3YxL2FjY291bnRzL2F1dGhlbnRpY2F0ZSIsImV4cCI6MTYzMDM4ODk3Nn0.JZ2Hn2i0Nuw00TPK8seCbTv67ABBM-SYD8FExwqs2uE
 Content-Type: application/json
 
 {
+  "id": 31,
   "firstName": "Kateryna",
   "lastName": "Borysiuk",
   "classId": 8,
   "account": {
+    "id": 31,
     "userName": "kat",
     "passwordHash": "fake_password_hash"
   }
@@ -174,6 +177,18 @@ POST http://localhost:8080/v1/accounts/authenticate
 Content-Type: application/x-www-form-urlencoded
 
 username=vasia&password=1
+
+###
+POST http://localhost:8080/v1/accounts/authenticate
+Content-Type: application/x-www-form-urlencoded
+
+username=kat&password=student
+###
+POST http://localhost:8080/v1/accounts/authenticate
+Content-Type: application/x-www-form-urlencoded
+
+username=tamara&password=fake_password_hash
+
 
 
 
