@@ -8,6 +8,9 @@ In order to bootstrap the application you need to have installed on your machine
 
 - [Node v14](https://nodejs.org/en/download)
 - [yarn v1](https://classic.yarnpkg.com/en/docs/install)
+
+Optional:
+
 - [Protocol Buffer Compiler](https://grpc.io/docs/protoc-installation)
 
 ### Bootstrap
