@@ -4,12 +4,16 @@ import { SnackbarProvider } from 'notistack'
 import { PhotographerContextProvider } from '../../contexts/PhotographerContext';
 import { YearbooksPage } from '../YearbooksPage';
 import { EditYearbookPage } from '../EditYearbookPage';
+import { LoginPage } from '../LoginPage/LoginPage';
 
 export const App: FC = () => {
   return (
       <BrowserRouter>
           <SnackbarProvider autoHideDuration={2500}>
               <PhotographerContextProvider>
+                <Route exact path="/login">
+                  <LoginPage />
+                </Route>
                 <Route exact path="/">
                     <YearbooksPage />
                 </Route>

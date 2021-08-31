@@ -7,6 +7,6 @@ import { App } from './components/App'
 
 import './styles.scss'
 
-// mockAxios(axios)
+mockAxios(axios)
 
 ReactDOM.render(<App />, document.querySelector('#root'))
