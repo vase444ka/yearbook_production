@@ -26,7 +26,15 @@ service YearbookService {
     option (google.api.http).put = "/v1/yearbooks/{id}";
   }
 
+<<<<<<< Updated upstream
   rpc DeleteYearbook (DeleteYearbookRequest) returns (Yearbook) {
+=======
+  rpc UpdateClass (Class) returns (Class) {
+    option (google.api.http).put = "/v1/yearbooks/{id}/class";
+  }
+
+  rpc DeleteYearbookAndClass (DeleteYearbookRequest) returns (Yearbook) {
+>>>>>>> Stashed changes
     option (google.api.http).delete = "/v1/yearbooks/{id}";
   }
 }

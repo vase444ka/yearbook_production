@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strict": true,
+    "noImplicitAny": true,
+    "module": "CommonJS",
+    "target": "es5",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*", "dev/**/*"],
+  "exclude": ["src/server.ts"]
+}

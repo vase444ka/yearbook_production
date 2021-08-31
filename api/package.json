@@ -23,8 +23,8 @@
     "package.json"
   ],
   "scripts": {
-    "prebuild": "mkdir -p ./dist/proto-generated",
-    "build": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./dist/proto-generated yearbook_production/*.proto",
+    "prebuild": "rm -rf dist && mkdir -p dist/proto-generated",
+    "build": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./dist/proto-generated --ts_proto_opt=esModuleInterop=true yearbook_production/*.proto",
     "test": "echo 'sam ty yebook' && exit 0"
   },
   "license": "ISC",
