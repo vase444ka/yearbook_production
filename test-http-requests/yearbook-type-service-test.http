@@ -35,6 +35,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8080/v1/students/16
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2Iiwicm9sZXMiOlsiUk9MRV9QSE9UT0dSQVBIRVIiXSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3YxL2FjY291bnRzL2F1dGhlbnRpY2F0ZSIsImV4cCI6MTYzMDM4ODk3Nn0.JZ2Hn2i0Nuw00TPK8seCbTv67ABBM-SYD8FExwqs2uE
 
 ###
 GET http://localhost:8080/v1/students/20

@@ -44,6 +44,7 @@ public class SupervisorService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         else{
+            result.get().getAccount().setPasswordHash(null);//FIXME
             return result.get();
         }
     }

@@ -16,6 +16,13 @@ public class Account {
     private Timestamp updated;
     private Timestamp deleted;
 
+    public enum Roles{
+        ROLE_STUDENT,
+        ROLE_SUPERVISOR,
+        ROLE_PHOTOGRAPHER
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

@@ -26,8 +26,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;//out-of-box, injected and configurated by configurator
-    private final int MINUTES_TO_EXPIRE_JWT = 10;
-    private final int MINUTES_TO_EXPIRE_JWT_REFRESH = 10;
+    private final int MINUTES_TO_EXPIRE_JWT = 30;
+    private final int MINUTES_TO_EXPIRE_JWT_REFRESH = 30;
 
     @Autowired
     public MyAuthenticationFilter(AuthenticationManager authenticationManager){
@@ -42,7 +42,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         System.err.println("Username:" + username + " Password: " + password);
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-        return authenticationManager.authenticate(authenticationToken);
+        return authenticationManager.authenticate(authenticationToken);//AccountService does it's job here
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MyAuthenticationFilter extends UsernamePasswordAuthenticationFilter
         //which gets user from my service, manipulates it's data and decides whether db password matches given one
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         String access_token = JWT.create()
-                .withSubject(user.getUsername())//TODO maybe add id here
+                .withSubject(user.getUsername())//TODO follow id flow
                 .withExpiresAt(new Date(System.currentTimeMillis() + MINUTES_TO_EXPIRE_JWT * 60 * 1000))
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
