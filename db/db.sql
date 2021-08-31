@@ -3,7 +3,6 @@ CREATE TABLE IF NOT EXISTS class (
   grade INT NOT NULL,
   name VARCHAR(45) NOT NULL,
   school VARCHAR(45) NOT NULL,
-  version INT DEFAULT 1,
   PRIMARY KEY (id));
 
  

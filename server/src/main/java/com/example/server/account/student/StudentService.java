@@ -2,6 +2,7 @@ package com.example.server.account.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import com.example.server.yearbook.ClassRepository;
@@ -16,12 +17,15 @@ import java.util.Optional;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final ClassRepository classRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public StudentService(StudentRepository studentRepository,
-                          ClassRepository classRepository){
+                          ClassRepository classRepository,
+                          PasswordEncoder passwordEncoder){
         this.studentRepository = studentRepository;
         this.classRepository = classRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Student CreateStudent(Student student){
@@ -29,6 +33,8 @@ public class StudentService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         else {
+            student.getAccount().setPasswordHash(
+                    passwordEncoder.encode(student.getAccount().getPasswordHash()));
             return studentRepository.save(student);
         }
     }

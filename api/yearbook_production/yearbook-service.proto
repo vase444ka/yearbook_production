@@ -26,10 +26,6 @@ service YearbookService {
     option (google.api.http).put = "/v1/yearbooks/{id}";
   }
 
-  rpc UpdateClass (Class) returns (Class) {
-    option (google.api.http).put = "/v1/yearbooks/{id}/class";
-  }
-
   rpc DeleteYearbook (DeleteYearbookRequest) returns (Yearbook) {
     option (google.api.http).delete = "/v1/yearbooks/{id}";
   }

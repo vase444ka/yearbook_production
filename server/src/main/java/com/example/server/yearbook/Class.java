@@ -9,13 +9,11 @@ public class Class {
     private Integer grade;
     private String name;
     private String school;
-    private Integer version;
 
     public Class(Integer grade, String name, String school, Integer version) {
         this.grade = grade;
         this.name = name;
         this.school = school;
-        this.version = version;
     }
 
     public Class(Long id, Integer grade, String name, String school, Integer version) {
@@ -23,11 +21,9 @@ public class Class {
         this.grade = grade;
         this.name = name;
         this.school = school;
-        this.version = version;
     }
 
     public Class() {
-        this.version = 1;
     }
 
     @Id
@@ -68,16 +64,6 @@ public class Class {
         this.school = school;
     }
 
-    @Version
-    @Column(name = "version", nullable = false)
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
     @Override
     public String toString() {
         return "Class{" +
@@ -85,7 +71,6 @@ public class Class {
                 ", grade=" + grade +
                 ", name='" + name + '\'' +
                 ", school='" + school + '\'' +
-                ", version=" + version +
                 '}';
     }
 }

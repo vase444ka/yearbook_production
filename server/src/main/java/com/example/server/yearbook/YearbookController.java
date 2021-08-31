@@ -37,12 +37,6 @@ public class YearbookController {
         return yearbookService.UpdateYearbook(yearbook);
     }
 
-    @PutMapping(path = "/{id}/class")
-    public Class UpdateClass(@RequestBody Class aClass, @PathVariable("id") Long id){
-        aClass.setId(id);
-        return yearbookService.UpdateClass(aClass);
-    }
-
     @DeleteMapping(path="{yearbookId}")
     public void DeleteYearbook(@PathVariable("yearbookId") Long id){
         yearbookService.DeleteYearbook(id);

@@ -52,21 +52,13 @@ public class YearbookService {
     }
 
     public Yearbook UpdateYearbook(Yearbook yearbook){
-        if (!yearbookTypeRepository.existsById(yearbook.getYearbookType().getId())){
+        if (!yearbookTypeRepository.existsById(yearbook.getYearbookType().getId()) ||
+        !yearbookRepository.existsById(yearbook.getId())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         else {
             yearbook.setUpdated(Timestamp.valueOf(LocalDateTime.now()));
             return yearbookRepository.save(yearbook);
-        }
-    }
-
-    public Class UpdateClass(Class aClass){
-        if (!classRepository.existsById(aClass.getId())){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
-        else {
-            return classRepository.save(aClass);
         }
     }
 
