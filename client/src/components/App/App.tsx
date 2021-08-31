@@ -10,10 +10,10 @@ export const App: FC = () => {
   return (
       <BrowserRouter>
           <SnackbarProvider autoHideDuration={2500}>
-              <PhotographerContextProvider>
                 <Route exact path="/login">
                   <LoginPage />
                 </Route>
+              <PhotographerContextProvider>
                 <Route exact path="/">
                     <YearbooksPage />
                 </Route>

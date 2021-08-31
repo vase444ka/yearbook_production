@@ -2,7 +2,7 @@ import React, { FC, PropsWithChildren } from 'react';
 import { TextField } from '@material-ui/core';
 
 type InputProps<Value> = {
-    type: 'number' | 'text'
+    type: 'number' | 'text' | 'password'
     id: string
     label: string
     value: Value
