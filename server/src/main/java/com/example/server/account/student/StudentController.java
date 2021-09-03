@@ -24,8 +24,8 @@ public class StudentController {
     }
 
     @PostMapping(path="/create-batch")
-    public List<Student> CreateStudentsBatch(@RequestBody List<Student> students){
-        return studentService.CreateStudentsBatch(students);
+        public List<Student> CreateStudentsBatch(@RequestBody List<Student> students){
+            return studentService.CreateStudentsBatch(students);
     }
 
     @GetMapping(path="{studentId}")

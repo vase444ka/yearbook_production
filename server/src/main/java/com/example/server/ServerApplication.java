@@ -28,8 +28,6 @@ public class ServerApplication {
 										ClassRepository classRepository,
 										StudentRepository studentRepository){
 		return args -> {
-			System.err.println(passwordEncoder().encode("student"));
-			System.err.println(passwordEncoder().encode("supervisor"));
 		};
 	}
 

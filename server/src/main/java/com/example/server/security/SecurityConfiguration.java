@@ -34,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private void pathSpecs(HttpSecurity http) throws Exception{
         //hasAnyAuthority - checks if token belongs to any of given roles
-
+        //TODO autorization
         http.authorizeRequests().antMatchers(DELETE).denyAll();
         http.authorizeRequests().antMatchers(GET, "/v1/students/**")
                 .hasAnyAuthority("ROLE_PHOTOGRAPHER",
