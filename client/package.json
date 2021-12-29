@@ -9,15 +9,26 @@
     "directory": "client"
   },
   "scripts": {
-    "prebuild": "rm -rf dist",
+    "prebuild": "rm -r -f dist",
     "build:client": "webpack",
     "build:server": "tsc -p tsconfig.server.json",
     "build": "yarn build:server && yarn build:client",
     "watch:client": "webpack --watch",
     "serve": "node ./dist/index.js",
-    "watch": "yarn prebuild && yarn build:server && ttab -t 'Running server' yarn serve && ttab -t 'Watching client' yarn watch:client",
-    "start": "yarn watch && sleep 5 && open http://localhost:3000",
-    "test": "echo 'sam ty yebook' && exit 0"
+
+    "show": "run-script-os",
+    "show:win32": "start http://localhost:3000",
+    "show:default": "open http://localhost:3000",
+
+    "watch": "run-script-os",
+    "watch:win32": "yarn prebuild && yarn build:server && wttab -t \"Running server\" \"yarn serve\" && wttab -t \"Watching client\" \"yarn watch:client\"",
+    "watch:default": "yarn prebuild && yarn build:server && ttab -t 'Running server' yarn serve && ttab -t 'Watching client' yarn watch:client",
+    
+    "start": "yarn watch && sleep 5 && yarn show",
+
+    "test": "run-script-os",
+    "test:win32": "echo 'sam ty yebook(win script)' && exit 0",
+    "test:default": "echo 'macos script' && exit 0"
   },
   "author": {
     "name": "Vasylyna Borysiuk",
@@ -42,15 +53,19 @@
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.2.0",
+    "run-script-os": "^1.1.6",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "ts-loader": "^9.2.5",
     "ts-proto": "^1.82.5",
-    "ttab": "^0.7.1",
     "typescript": "^4.4.2",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0",
     "webpack-livereload-plugin": "^3.0.2"
+  },
+  "optionalDependencies": {
+    "ttab": "^0.7.1",
+    "wttab": "^1.2.2"
   },
   "dependencies": {
     "@date-io/date-fns": "1.x",
