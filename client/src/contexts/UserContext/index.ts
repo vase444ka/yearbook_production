@@ -1,2 +1,2 @@
-export { UserContext, PhotographerContextType } from './UserContext'
+export { UserContext, LoginDataType } from './UserContext'
 export { UserContextProvider } from './UserContextProvider'
