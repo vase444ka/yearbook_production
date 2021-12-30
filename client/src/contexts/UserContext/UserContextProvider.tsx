@@ -1,23 +1,30 @@
-import React, { FC } from 'react';
-import { UserContext } from './UserContext';
+import React, { FC, useState } from 'react';
+import { UserContext, LoginDataType } from './UserContext';
 import { Account } from '../../domain/account';
-import { Redirect } from 'react-router-dom';
+
 
 export const UserContextProvider: FC = ({ children }) => {
-    let account: Account | null = null
     const accountSerialized = localStorage.getItem('account')
-    if (accountSerialized) {
-        account = JSON.parse(accountSerialized)
-    }
-    if (!account) {
-        return <Redirect to='/login' />
+
+    const [account, setAccount] = useState<Account | null>(
+        accountSerialized != null ? JSON.parse(accountSerialized) : null
+        )//this should only execute with first render ever
+
+    const login = (loginData: LoginDataType) => {
+        //TODO async checking call
+        const newAccount: Account = {
+            id: 0,
+            username: loginData.username,
+            created: new Date(),
+            updated: new Date()
+        }//FIXME stub
+        localStorage.setItem('account', JSON.stringify(newAccount))
+        setAccount(newAccount)
     }
 
-    const login = (account: Account) => {
-        localStorage.setItem('account', JSON.stringify(account))
-    }
     const logout = () => {
         localStorage.removeItem('account')
+        setAccount(null)
     }
 
     return (
