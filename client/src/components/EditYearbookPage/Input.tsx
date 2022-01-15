@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 
 type InputProps<Value> = {
     type: 'number' | 'text' | 'password'

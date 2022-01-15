@@ -1,7 +1,7 @@
 import React, { FC, useContext, useState } from 'react';
 import { Page } from '../Page';
 import { Input } from '../EditYearbookPage/Input';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { UserContext } from '../../contexts/UserContext/UserContext';
 
 export const LoginPage: FC = () => {

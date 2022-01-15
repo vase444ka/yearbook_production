@@ -1,16 +1,12 @@
 import React, { FC } from 'react'
-import { Button, Card, CardActions, CardContent, Chip, makeStyles, Typography } from '@material-ui/core'
-import EditIcon from '@material-ui/icons/Edit'
+import { Button, Card, CardActions, CardContent, Chip, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import EditIcon from '@mui/icons-material/Edit'
 import { format } from 'date-fns'
 
 import { Yearbook } from '../../domain/yearbook';
 import { Link } from 'react-router-dom';
-
-const yearbookTypeToClassNameMap = {
-    'Mini': 'miniType',
-    'Mega': 'maxiType',
-    'Maxi': 'megaType',
-}
+import { YearbookType } from '../../domain/yearbook-type';
 
 const useStyles = makeStyles({
     card: {
@@ -25,14 +21,15 @@ const useStyles = makeStyles({
     typeContainer: {
         padding: '0 5px',
     },
-    miniType: {
-        background: '#30fc03',
-    },
-    maxiType: {
-        background: '#fcf403',
-    },
-    megaType: {
-        background: '#fca903',
+    chip: {
+        background: (props: YearbookType) => {
+            if (props.name === 'Mini')
+                return '#30fc03'
+            if (props.name === 'Maxi')
+                return '#fcf403'
+            if (props.name === 'Mega')
+                return '#fca903'
+        },
     },
     dueDate: {
         marginTop: '10px'
@@ -46,9 +43,8 @@ type YearbookCardProps = {
     yearbook: Yearbook
 }
 export const YearbookCard: FC<YearbookCardProps> = ({ yearbook }) => {
-    const classes = useStyles()
     const { yearbookType } = yearbook
-    const chipClassName = yearbookTypeToClassNameMap[yearbookType.name]
+    const classes = useStyles(yearbookType)
 
     return (
         <Card className={classes.card}>
@@ -57,7 +53,7 @@ export const YearbookCard: FC<YearbookCardProps> = ({ yearbook }) => {
                     <Typography className={classes.title} color="textPrimary">
                         {yearbook.title}
                     </Typography>
-                    <Chip className={classes[chipClassName]} size='small' label={(
+                    <Chip className={classes.chip} size='small' label={(
                         <div className={classes.typeContainer}>{yearbookType.name}</div>
                     )} />
                 </div>

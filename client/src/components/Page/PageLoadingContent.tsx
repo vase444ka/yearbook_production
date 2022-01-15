@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { CircularProgress, makeStyles, Typography } from '@material-ui/core';
+import { CircularProgress, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { PageContent } from './PageContent';
 
 const useStyles = makeStyles({

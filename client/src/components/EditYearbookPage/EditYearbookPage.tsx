@@ -1,14 +1,15 @@
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import React, { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
 import { serviceInstance as yearbookService } from '../../api/services/YearbookService';
 import { Page } from '../Page';
 import { Yearbook } from '../../domain/yearbook';
-import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Input } from './Input';
-import { DatePicker } from './DatePicker';
+import { MyDatePicker } from './MyDatePicker';
 import { Class } from '../../domain/class';
 import { useSnackbar } from 'notistack';
 
@@ -142,10 +143,10 @@ export const EditYearbookPage: FC = () => {
               <Page.Title text={yearbook.title} />
               <Grid container spacing={10}>
                   <Grid item xs={6}>
-                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <Typography className={classes.subtitle} component='h3' color='textSecondary'>Edit yearbook fields:</Typography>
                           <form className={classes.form}>
-                              <DatePicker
+                              <MyDatePicker
                                   id='next-meeting'
                                   label="Next meeting"
                                   value={yearbook.nextMeeting}
@@ -154,7 +155,7 @@ export const EditYearbookPage: FC = () => {
                                       handleYearbookFieldChange('nextMeeting', newValue)
                                   }}
                               />
-                              <DatePicker
+                              <MyDatePicker
                                   id="payed"
                                   label="Payed"
                                   value={yearbook.payed}
@@ -163,7 +164,7 @@ export const EditYearbookPage: FC = () => {
                                       handleYearbookFieldChange('payed', newValue)
                                   }}
                               />
-                              <DatePicker
+                              <MyDatePicker
                                   id="prepayed"
                                   label="Prepayed"
                                   value={yearbook.prepayed}
@@ -172,7 +173,7 @@ export const EditYearbookPage: FC = () => {
                                       handleYearbookFieldChange('prepayed', newValue)
                                   }}
                               />
-                              <DatePicker
+                              <MyDatePicker
                                   id="deadline"
                                   label="Deadline"
                                   value={yearbook.deadline}
@@ -182,7 +183,7 @@ export const EditYearbookPage: FC = () => {
                                   }}
                               />
                           </form>
-                      </MuiPickersUtilsProvider>
+                      </LocalizationProvider>
                   </Grid>
                   <Grid item xs={6}>
                       <Typography className={classes.subtitle} component='h3' color='textSecondary'>Edit class fields:</Typography>

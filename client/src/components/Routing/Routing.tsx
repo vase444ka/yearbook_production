@@ -6,23 +6,16 @@ import { PhotographerContextProvider } from '../../contexts/PhotographerContext'
 import { YearbooksPage } from '../YearbooksPage';
 import { EditYearbookPage } from '../EditYearbookPage';
 import { UserContext, UserContextType } from "../../contexts/UserContext/UserContext";
-import Button from "@material-ui/core/Button";
+import { Box } from "@mui/system";
 
 
 export const Routing: FC = () => {
     const userContext: UserContextType = useContext(UserContext)
     console.log(userContext.account)
-    //FIXME temporary button
+    //FIXME temporary box which breaks all the styles if deleted
     return (
         <BrowserRouter>
-            <Button
-                variant='contained'
-                size='large'
-                color='primary'
-                onClick={() => userContext.logout()}
-            >
-                Log out
-            </Button>
+            <Box/>
             {userContext.account === null &&
                 <Route exact path="/login">
                     <LoginPage />

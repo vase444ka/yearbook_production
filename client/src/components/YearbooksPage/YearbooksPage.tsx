@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Grid, makeStyles, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import { Yearbook } from '../../domain/yearbook';
 import { serviceInstance as yearbookService } from '../../api/services/YearbookService';
 import { PhotographerContext } from '../../contexts/PhotographerContext';

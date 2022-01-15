@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles({
     page: {},

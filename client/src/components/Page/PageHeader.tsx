@@ -1,6 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles, Typography } from '@material-ui/core';
+import { Button, Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+import { UserContext, UserContextType } from '../../contexts/UserContext/UserContext';
 
 const useStyles = makeStyles({
     header: {
@@ -23,12 +26,18 @@ const useStyles = makeStyles({
 
 export const PageHeader: FC = () => {
     const classes = useStyles()
+    const userContext: UserContextType = useContext(UserContext)
 
     return (
         <header className={classes.header}>
             <Link to='/' className={classes.logoLink}>
                 <Typography className={classes.logo} component='h1' color='textPrimary'>Yebooks production</Typography>
             </Link>
+            <Button
+                onClick={() => userContext.logout()}
+            >
+                Log out
+            </Button>
         </header>
     )
 }
