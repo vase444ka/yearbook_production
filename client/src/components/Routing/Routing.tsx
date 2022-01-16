@@ -12,10 +12,9 @@ import { Box } from "@mui/system";
 export const Routing: FC = () => {
     const userContext: UserContextType = useContext(UserContext)
     console.log(userContext.account)
-    //FIXME temporary box which breaks all the styles if deleted
+
     return (
         <BrowserRouter>
-            <Box/>
             {userContext.account === null &&
                 <Route exact path="/login">
                     <LoginPage />
