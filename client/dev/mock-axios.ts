@@ -27,7 +27,7 @@ export const mockAxios = (axios: AxiosInstance) => {
     axiosMock.onGet(/\/yearbooks\/\d+/).reply(config => {
         console.log('onGet `/yearbooks/:id` ---', config)
 
-        const { groups: { id: serializedId } } = config.url.match(/\/yearbooks\/(?<id>\d+)/)
+        const serializedId = config.url!.match(/\/yearbooks\/(?<id>\d+)/)!.groups!['id']
         const id = Number(serializedId)
         const yearbook = yearbooks.find(yearbook => yearbook.id === id)
         if (!yearbook) {
@@ -40,7 +40,7 @@ export const mockAxios = (axios: AxiosInstance) => {
     axiosMock.onGet(/\/yearbooks\/query\/?.*/).reply(config => {
         console.log('onGet `/yearbooks/query` ---', config)
 
-        const [searchString] = config.url.match(/\?.*/) || []
+        const [searchString] = config.url?.match(/\?.*/) || []
         const photographerIdSerialized = new URLSearchParams(searchString).get('photographerId')
 
         if (photographerIdSerialized) {
@@ -59,7 +59,7 @@ export const mockAxios = (axios: AxiosInstance) => {
     axiosMock.onPut(/\/yearbooks\/\d+/).reply(config => {
         console.log('onPut `/yearbooks/:id` ---', config)
 
-        const { groups: { id: serializedId } } = config.url.match(/\/yearbooks\/(?<id>\d+)/)
+        const serializedId = config.url!.match(/\/yearbooks\/(?<id>\d+)/)!.groups!['id']
         const id = Number(serializedId)
         const yearbook = yearbooks.find(yearbook => yearbook.id === id)
         if (!yearbook) {
