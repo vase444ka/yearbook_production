@@ -46,7 +46,7 @@ export const EditYearbookPage: FC = () => {
     useEffect(() => {
         const loadYearbook = async () => {
             try {
-                const loadedYearbook = await yearbookService.getYearbook(id)
+                const loadedYearbook = await yearbookService.getYearbook(id!)
                 setYearbook(loadedYearbook)
                 console.log(loadedYearbook)
             } catch (error) {

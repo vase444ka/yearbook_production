@@ -1,8 +1,7 @@
 import React, { FC, useContext } from "react";
-import { BrowserRouter, Redirect, Route } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import { LoginPage } from "../LoginPage/LoginPage";
-import { PhotographerContextProvider } from '../../contexts/PhotographerContext';
 import { YearbooksPage } from '../YearbooksPage';
 import { EditYearbookPage } from '../EditYearbookPage';
 import { UserContext, UserContextType } from "../../contexts/UserContext/UserContext";
@@ -14,24 +13,18 @@ export const Routing: FC = () => {
 
     if (userContext.account === null)
         return (
-            <BrowserRouter>
-                <Route exact path="/login">
-                    <LoginPage />
-                </Route>
-            </BrowserRouter>
+            <Routes>
+                <Route path="/login" element={<LoginPage />}/>
+                <Route path="*" element={<Navigate to="/login" />}/>
+            </Routes >
         )
 
     return (
-        <BrowserRouter>
-            <PhotographerContextProvider>
-                <Route exact path="/">
-                    <YearbooksPage />
-                </Route>
-                <Route exact path="/yearbooks/:id">
-                    <EditYearbookPage />
-                </Route>
-            </PhotographerContextProvider>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/" element={<YearbooksPage />}/>
+            <Route path="/yearbooks/:id" element={<EditYearbookPage />}/>
+            <Route path="/login" element={<Navigate to="/" />}/>
+            <Route path="*" element={<h1>404 lol</h1>}/>
+        </Routes>
     )
-
 }
