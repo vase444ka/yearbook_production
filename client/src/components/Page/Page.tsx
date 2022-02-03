@@ -1,14 +1,12 @@
 import React, { FC } from 'react'
-import makeStyles from '@mui/styles/makeStyles';
+import { Box } from '@mui/material';
 
-const useStyles = makeStyles({
-    page: {},
-});
+const style = {
+}
 
 export const Page: FC = ({ children }) => {
-    const classes = useStyles()
 
     return (
-        <div className={classes.page}>{children}</div>
+        <Box sx={style}>{children}</Box>
     )
 }

@@ -7,11 +7,11 @@ import { serviceInstance as yearbookService } from '../../api/services/YearbookS
 import { Page } from '../Page';
 import { Yearbook } from '../../domain/yearbook';
 import { Button, Grid, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { Input } from './Input';
 import { MyDatePicker } from './MyDatePicker';
 import { Class } from '../../domain/class';
 import { useSnackbar } from 'notistack';
+import { Box } from '@mui/system';
 
 type YearbookChangeableFields = keyof Omit<Yearbook, 'id' | 'yearbookType' | 'class' | 'created' | 'updated' | 'version'>
 type ClassChangeableFields = keyof Omit<Class, 'id' | 'version'>
@@ -22,9 +22,8 @@ type ValidationError = {
     message: string
 }
 
-const useStyles = makeStyles({
+const styles = {
     form: {
-
     },
     subtitle: {
         marginTop: '30px'
@@ -32,13 +31,12 @@ const useStyles = makeStyles({
     saveButton: {
         marginTop: '40px'
     }
-});
+} as const;
 
 type EditYearbookPageRouteParams = {
     id: string
 }
 export const EditYearbookPage: FC = () => {
-    const classes = useStyles()
     const { enqueueSnackbar } = useSnackbar()
     const { id } = useParams<EditYearbookPageRouteParams>()
 
@@ -144,8 +142,8 @@ export const EditYearbookPage: FC = () => {
               <Grid container spacing={10}>
                   <Grid item xs={6}>
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
-                          <Typography className={classes.subtitle} component='h3' color='textSecondary'>Edit yearbook fields:</Typography>
-                          <form className={classes.form}>
+                          <Typography sx={styles.subtitle} component='h3' color='textSecondary'>Edit yearbook fields:</Typography>
+                          <Box component={'form'} sx={styles.form}>
                               <MyDatePicker
                                   id='next-meeting'
                                   label="Next meeting"
@@ -182,12 +180,12 @@ export const EditYearbookPage: FC = () => {
                                       handleYearbookFieldChange('deadline', newValue)
                                   }}
                               />
-                          </form>
+                          </Box>
                       </LocalizationProvider>
                   </Grid>
                   <Grid item xs={6}>
-                      <Typography className={classes.subtitle} component='h3' color='textSecondary'>Edit class fields:</Typography>
-                      <form className={classes.form}>
+                      <Typography sx={styles.subtitle} component='h3' color='textSecondary'>Edit class fields:</Typography>
+                      <Box component='form' sx={styles.form}>
                           <Input
                               type="number"
                               id="grade"
@@ -219,11 +217,11 @@ export const EditYearbookPage: FC = () => {
                                   handleClassFieldChange('school', newSchool)
                               }}
                           />
-                      </form>
+                      </Box>
                   </Grid>
               </Grid>
               <Button
-                  className={classes.saveButton}
+                  sx={styles.saveButton}
                   variant='outlined'
                   size='large'
                   color='primary'

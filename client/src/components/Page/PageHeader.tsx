@@ -1,11 +1,11 @@
 import React, { FC, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Typography } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
+import { Button, Link, Typography } from '@mui/material';
 
-import makeStyles from '@mui/styles/makeStyles';
 import { UserContext, UserContextType } from '../../contexts/UserContext/UserContext';
+import { Box } from '@mui/system';
 
-const useStyles = makeStyles({
+const styles = {
     header: {
         display: 'flex',
         padding: '0 50px',
@@ -22,22 +22,21 @@ const useStyles = makeStyles({
         fontSize: '25px',
         fontFamily: `'ZCOOL KuaiLe', cursive`
     }
-});
+}
 
 export const PageHeader: FC = () => {
-    const classes = useStyles()
     const userContext: UserContextType = useContext(UserContext)
 
     return (
-        <header className={classes.header}>
-            <Link to='/' className={classes.logoLink}>
-                <Typography className={classes.logo} component='h1' color='textPrimary'>Yebooks production</Typography>
+        <Box component={'header'} sx={styles.header}>
+            <Link component={RouterLink} to='/' sx={styles.logoLink}>
+                <Typography sx={styles.logo} component='h1' color='textPrimary'>Yebooks production</Typography>
             </Link>
             <Button
                 onClick={() => userContext.logout()}
             >
                 Log out
             </Button>
-        </header>
+        </Box>
     )
 }

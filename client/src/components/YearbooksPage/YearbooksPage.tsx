@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Grid, Typography } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
 import { Yearbook } from '../../domain/yearbook';
 import { serviceInstance as yearbookService } from '../../api/services/YearbookService';
 import { PhotographerContext } from '../../contexts/PhotographerContext';
@@ -8,20 +7,19 @@ import { YearbookCard } from './YearbookCard';
 import { Page } from '../Page';
 import { toDomain as yearbookToDomain } from '../../api/mappers/yearbook';
 
-const useStyles = makeStyles({
+const styles = {
     title: {
         fontSize: '23px',
     },
     yearbooksList: {
         marginTop: '15px'
     }
-});
+}
 
 export const YearbooksPage = () => {
     const { photographer } = useContext(PhotographerContext)
     const [yearbooks, setYearbooks] = useState<Yearbook[] | null>(null)
-    const classes = useStyles()
-
+     
     useEffect(() => {
         const loadYearbooks = async () => {
             if (photographer) {
@@ -47,7 +45,7 @@ export const YearbooksPage = () => {
             <Page.Header />
             <Page.Content>
                 <Page.Title text='Your yebooks' />
-                <Grid className={classes.yearbooksList} container spacing={4}>
+                <Grid sx={styles.yearbooksList} container spacing={4}>
                     {yearbooks.map(yearbook => (
                         <Grid key={yearbook.id} item xs={6} md={4} lg={3}>
                             <YearbookCard yearbook={yearbook} />

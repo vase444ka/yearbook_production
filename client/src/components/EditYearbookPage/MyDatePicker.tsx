@@ -15,7 +15,9 @@ export const MyDatePicker: FC<DatePickerProps> = props => {
     return (
         <DatePicker
             renderInput={(props) => <TextField 
-                {...props} />}
+                {...props}             
+                margin='normal'
+                />}
             label={label}
             inputFormat="MM/dd/yyyy"
             value={value}
