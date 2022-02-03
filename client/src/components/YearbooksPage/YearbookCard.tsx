@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import { Yearbook } from '../../domain/yearbook';
 import { Link } from 'react-router-dom';
 import { YearbookType } from '../../domain/yearbook-type';
+import { styled } from '@mui/system';
 
 const styles = {
     card: {
@@ -38,6 +39,15 @@ const styles = {
     }
 };
 
+const StyledChip = styled(Chip)((props: { name: string }) => {
+    if (props.name === 'Mini')
+        return { background: '#30fc03' }
+    if (props.name === 'Maxi')
+        return { background: '#fcf403' }
+    if (props.name === 'Mega')
+        return { background: '#fca903' }
+});
+
 type YearbookCardProps = {
     yearbook: Yearbook
 }
@@ -51,7 +61,7 @@ export const YearbookCard: FC<YearbookCardProps> = ({ yearbook }) => {
                     <Typography sx={styles.title} color="textPrimary">
                         {yearbook.title}
                     </Typography>
-                    <Chip sx={styles.chip} size='small' label={(
+                    <StyledChip name={yearbookType.name} size='medium' label={(
                         <Box sx={styles.typeContainer}>{yearbookType.name}</Box>
                     )} />
                 </Box>
