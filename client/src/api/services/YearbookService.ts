@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { axios } from '../../axios';
-import { ApiYearbook } from '../entities/yearbook';
+import { Yearbook as ApiYearbook } from '../entities/yearbook';
 import { Yearbook } from '../../domain/yearbook';
 import { toDomain as yearbookToDomain } from '../../api/mappers/yearbook';
 

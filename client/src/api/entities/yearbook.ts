@@ -1,16 +1,19 @@
-import { ApiClass } from './class';
-import { ApiYearbookType } from './yearbook-type';
+/* eslint-disable */
+import { Class } from "./class";
+import { YearbookType } from "./yearbook-type";
 
-export type ApiYearbook = {
-    id: number;
-    version: number;
-    class: ApiClass;
-    yearbookType: ApiYearbookType;
-    prepayed: string;
-    payed: string;
-    nextMeeting: string;
-    deadline: string;
-    created: string;
-    updated: string;
-    deleted?: string;
+export const protobufPackage = "";
+
+export interface Yearbook {
+  id: number;
+  version: number;
+  class?: Class;
+  yearbookType?: YearbookType;
+  prepayed?: Date;
+  payed?: Date;
+  nextMeeting?: Date;
+  deadline?: Date;
+  created?: Date;
+  updated?: Date;
+  deleted?: Date;
 }

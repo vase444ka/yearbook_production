@@ -1,20 +1,24 @@
 import { createContext } from 'react';
-import { Account } from '../../domain/account';
+import { Supervisor } from '../../domain/supervisor';
+import { Student } from '../../domain/student';
+import { Photographer } from '../../domain/photographer';
 
-export type LoginDataType = {
+
+export type LoginCredentials = {
     username: string;
     password: string;
 }
 
+export type Roles = Supervisor | Student | Photographer
 
 export type UserContextType = {
-    account: Account | null
-    login: (loginData: LoginDataType) => void
+    accountData: Roles | null
+    login: (loginData: LoginCredentials) => void
     logout: () => void
 }
 
 export const UserContext = createContext<UserContextType>({
-    account: null,
+    accountData: null,
     login: () => {},
     logout: () => {},
 })

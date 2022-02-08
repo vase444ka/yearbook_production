@@ -5,7 +5,6 @@ import { format } from 'date-fns'
 
 import { Yearbook } from '../../domain/yearbook';
 import { Link } from 'react-router-dom';
-import { YearbookType } from '../../domain/yearbook-type';
 import { styled } from '@mui/system';
 
 const styles = {
@@ -20,16 +19,6 @@ const styles = {
     },
     typeContainer: {
         padding: '0 5px',
-    },
-    chip: {//TODO
-        /*background: (props: YearbookType) => {
-            if (props.name === 'Mini')
-                return '#30fc03'
-            if (props.name === 'Maxi')
-                return '#fcf403'
-            if (props.name === 'Mega')
-                return '#fca903'
-        },*/
     },
     dueDate: {
         marginTop: '10px'

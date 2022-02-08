@@ -1,35 +1,44 @@
-import React, { FC, useState } from 'react';
-import { UserContext, LoginDataType } from './UserContext';
-import { Account } from '../../domain/account';
+import React, { FC, useEffect, useState } from 'react';
+import { axios } from '../../axios';
+import { UserContext, LoginCredentials, Roles as Roles } from './UserContext';
+
+const ACCESS_TOKEN = 'access_token'
 
 
 export const UserContextProvider: FC = ({ children }) => {
-    const accountSerialized = localStorage.getItem('account')
+    const [accountData, setAccountData] = useState<Roles | null>(null)
+        
+    useEffect(()=>{
+        const accessToken = localStorage.getItem(ACCESS_TOKEN)
 
-    const [account, setAccount] = useState<Account | null>(
-        accountSerialized != null ? JSON.parse(accountSerialized) : null
-        )//this should only execute with first render ever
+        if (accessToken){
+            axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}$`
+            //TODO fetch and set acc data
+        }
+    })
 
-    const login = (loginData: LoginDataType) => {
-        //TODO async checking call
-        const newAccount: Account = {
-            id: 0,
-            username: loginData.username,
-            created: new Date(),
-            updated: new Date()
-        }//FIXME stub
-        localStorage.setItem('account', JSON.stringify(newAccount))
-        setAccount(newAccount)
+    const login = (loginCredentials: LoginCredentials) => {
+        let accessToken: string
+        //TODO auth request
+        localStorage.setItem(ACCESS_TOKEN, accessToken)
+        
+        axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}$`
+
+        let newAccount: Roles
+        //TODO fetch and set acc data
+
+        setAccountData(newAccount)
     }
 
     const logout = () => {
-        localStorage.removeItem('account')
-        setAccount(null)
+        localStorage.removeItem(ACCESS_TOKEN)
+        setAccountData(null)
+        delete axios.defaults.headers.common['Authorization']
     }
 
     return (
         <UserContext.Provider value={{
-            account,
+            accountData,
             login,
             logout
         }}>
