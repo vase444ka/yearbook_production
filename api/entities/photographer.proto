@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+
+import "entities/account.proto";
+
+option java_multiple_files = true;
+
+message Photographer {
+  int64 id = 1;
+
+  Account account = 25;
+}

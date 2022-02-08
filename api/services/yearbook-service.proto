@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+
+
+import "google/api/annotations.proto";
+
+import "entities/yearbook.proto";
+import "entities/class.proto";
+
+option java_multiple_files = true;
+
+service YearbookService {
+  rpc CreateYearbook (Yearbook) returns (Yearbook) {
+    option (google.api.http).post = "/v1/yearbooks";
+  }
+
+  rpc GetYearbook (GetYearbookRequest) returns (Yearbook) {
+    option (google.api.http).get = "/v1/yearbooks/{id}";
+  }
+
+  rpc QueryYearbooks (YearbooksQuery) returns (QueryYearbooksResponse) {
+    option (google.api.http).get = "/v1/yearbooks/query";
+  }
+
+  rpc UpdateYearbook (Yearbook) returns (Yearbook) {
+    option (google.api.http).put = "/v1/yearbooks/{id}";
+  }
+
+  rpc UpdateClass (Class) returns (Class) {
+    option (google.api.http).put = "/v1/yearbooks/{id}/class";
+  }
+
+  rpc DeleteYearbook (DeleteYearbookRequest) returns (Yearbook) {
+    option (google.api.http).delete = "/v1/yearbooks/{id}";
+  }
+}
+
+message GetYearbookRequest {
+  int32 id = 1;
+}
+
+message YearbooksQuery {
+  int64 photographer_id = 1;
+}
+
+message QueryYearbooksResponse {
+  repeated Yearbook yearbooks = 1;
+}
+
+message DeleteYearbookRequest {
+  int64 id = 1;
+
+  int32 version = 5;
+}

@@ -23,12 +23,12 @@
     "package.json"
   ],
   "scripts": {
-    "prebuild": "rm -rf dist && mkdir -p dist/proto-generated",
-    "build": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./dist/proto-generated --ts_proto_opt=esModuleInterop=true yearbook_production/*.proto",
+    "prebuild": "rm -r -f dist && mkdir -p dist/proto-generated",
+    "build": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_opt=outputJsonMethods=false,outputClientImpl=false,outputPartialMethods=false,esModuleInterop=true,useOptionals=true,outputEncodeMethods=false --ts_proto_out=./dist/proto-generated entities/*.proto services/*.proto",
     "test": "echo 'sam ty yebook' && exit 0"
   },
   "license": "ISC",
   "devDependencies": {
-    "ts-proto": "^1.82.5"
+    "ts-proto": "^1.104.0"
   }
 }
